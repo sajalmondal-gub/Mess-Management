@@ -1,190 +1,109 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel of  Mess ManageMent </title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
-    <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{{ asset('admin-assets/css/style.css') }}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Pannel </title>
+    <link rel="icon" href="{{ asset('admin-assets/img/2.png') }}" type="image/icon type">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('admin-assets/plugins/fontawesome-free/css/all.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('admin-assets/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin-assets/plugins/dropzone/min/dropzone.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin-assets/css/datetimepicker.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('admin-assets/plugins/summernote/summernote.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin-assets/css/custom.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
-<body>
+
+<body class="hold-transition sidebar-mini">
+    <!-- Site wrapper -->
     <div class="wrapper">
-        <aside id="sidebar" class="js-sidebar">
-            <!-- Content For Sidebar -->
-            <div class="h-100">
-                <div class="sidebar-logo">
-                    <a href="#">MessManagement</a>
-                </div>
-                <ul class="sidebar-nav">                  
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="fa-solid fa-list pe-2"></i>
-                            Dashboard
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand  navbar-light">
+            <!-- Right navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>           
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link p-0 pr-3" data-toggle="dropdown" href="#">
+                        <img src="{{ asset('admin-assets/img/users.png') }}" class='img-circle elevation-4' width="40"
+                            height="40" alt="">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-3">
+                        <h4 class="h4 mb-0"><strong>{{ Auth::guard('admin')->user()->name }}</strong></h4>
+                        <div class="mb-3">{{ Auth::guard('admin')->user()->email }}</div>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-user-cog mr-2"></i> Settings
                         </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#pages" data-bs-toggle="collapse"
-                            aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
-                            Pages
+                        <div class="dropdown-divider"></div>
+                        <a href="" class="dropdown-item">
+                            <i class="fas fa-lock mr-2"></i> Change Password
                         </a>
-                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Page 1</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Page 2</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#posts" data-bs-toggle="collapse"
-                            aria-expanded="false"><i class="fa-solid fa-sliders pe-2"></i>
-                            Posts
+                        <div class="dropdown-divider"></div>
+                        <a href="{{ route('admin.logout') }}" class="dropdown-item text-danger">
+                            <i class="fas fa-sign-out-alt mr-2"></i> Logout
                         </a>
-                        <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Post 1</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Post 2</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Post 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" data-bs-toggle="collapse"
-                            aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
-                            Auth
-                        </a>
-                        <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Login</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Register</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Forgot Password</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-header">
-                        Multi Level Menu
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#multi" data-bs-toggle="collapse"
-                            aria-expanded="false"><i class="fa-solid fa-share-nodes pe-2"></i>
-                            Multi Dropdown
-                        </a>
-                        <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link collapsed" data-bs-target="#level-1"
-                                    data-bs-toggle="collapse" aria-expanded="false">Level 1</a>
-                                <ul id="level-1" class="sidebar-dropdown list-unstyled collapse">
-                                    <li class="sidebar-item">
-                                        <a href="#" class="sidebar-link">Level 1.1</a>
-                                    </li>
-                                    <li class="sidebar-item">
-                                        <a href="#" class="sidebar-link">Level 1.2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </aside>
-        <div class="main">
-            <nav class="navbar navbar-expand px-3 border-bottom">
-                <button class="btn" id="sidebar-toggle" type="button">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse navbar">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                                <img src="image/profile.jpg" class="avatar img-fluid rounded" alt="">
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <a href="#" class="dropdown-item">Profile</a>
-                                <a href="#" class="dropdown-item">Setting</a>
-                                <a href="{{ route('admin.logout') }}" class="dropdown-item">Logout</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <main class="content px-3 py-2">
-                <div class="container-fluid">
-                    <div class="mb-3">
-                        <h4>Manager Dashboard</h4>
                     </div>
-                    <div class="row">
-                        <div class="col-12 col-md-6 d-flex">
-                            <div class="card flex-fill border-0 illustration">
-                                <div class="card-body p-0 d-flex flex-fill">
-                                    <div class="row g-0 w-100">
-                                        <div class="col-6">
-                                            <div class="p-3 m-1">
-                                                <h4>Welcome Back, Admin</h4>
-                                                <p class="mb-0">Admin Dashboard, CodzSword</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 align-self-end text-end">
-                                            <img src="image/customer-support.jpg" class="img-fluid illustration-img"
-                                                alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    @yield('content')
-                    
-                </div>
-            </main>
-            <a href="#" class="theme-toggle">
-                <i class="fa-regular fa-moon"></i>
-                <i class="fa-regular fa-sun"></i>
-            </a>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row text-muted">
-                        <div class="col-6 text-start">
-                            <p class="mb-0">
-                                <a href="#" class="text-muted">
-                                    <strong>CodzSwod</strong>
-                                </a>
-                            </p>
-                        </div>
-                        <div class="col-6 text-end">
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <a href="#" class="text-muted">Contact</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="text-muted">About Us</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="text-muted">Terms</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="text-muted">Booking</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        @include('admin.layouts.sidebar')
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            @yield('content')
+
         </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+
+            <strong id="foter">Copyright &copy; 2024-2034 Trinohub All rights reserved.
+        </footer>
+
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('admin-assets/js/script.js') }}"></script>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="{{ asset('admin-assets/plugins/jquery/jquery.min.js') }}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('admin-assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('admin-assets/js/adminlte.min.js') }}"></script>
+    <script src="{{ asset('admin-assets/plugins/dropzone/min/dropzone.min.js') }}"></script>
+    <script src="{{ asset('admin-assets/plugins/summernote/summernote.min.js') }}"></script>
+    <script src="{{ asset('admin-assets/js/datetimepicker.js') }}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{ asset('admin-assets/js/demo.js') }}"></script>
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ready(function () {
+            $(".summernote").summernote({
+                height: 200
+            });
+
+        });
+    </script>
     @yield('customJs')
 </body>
+
 </html>
