@@ -33,6 +33,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/logout', [HomeController::class, 'logout'])->name('admin.logout');
 
         Route::get('/deposite',[DepositeController::class,'index'])->name('deposite.index');
+        Route::post('/deposite',[DepositeController::class,'store'])->name('deposite.store');
+        Route::delete('/deposite/{deposites}',[DepositeController::class,'destroy'])->name('deposite.delete');
 
         //users
         Route::get('/users',[UserController::class,'index'])->name('users.index');

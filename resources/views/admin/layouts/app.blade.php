@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="{{ asset('admin-assets/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/plugins/dropzone/min/dropzone.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/css/datetimepicker.css') }}">
-
     <link rel="stylesheet" href="{{ asset('admin-assets/plugins/summernote/summernote.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/css/custom.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
