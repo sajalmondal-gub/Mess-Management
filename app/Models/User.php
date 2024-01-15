@@ -42,4 +42,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function deposites()
+    {
+        return $this->hasMany(Deposite::class, 'user_id');
+    }
 }

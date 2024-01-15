@@ -66,6 +66,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -167,23 +168,25 @@
             }
         });
     });
-    function DeleteDeposties(id){
-		var url='{{ route("deposite.delete","ID") }}';
-		var newUrl = url.replace("ID",id);
-        
-		if (confirm("Are you sure. you want to delete")) {
-			$.ajax({
-				url: newUrl,
-				type: 'delete',
-				data: {},
-				dataType: 'json',
-				headers: {
-					      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-				         },
-				success: function(response){                   
-				}	
-		   });	
-		}	
-	}
+    function DeleteDeposties(id) {
+        var url = '{{ route("deposite.delete","ID") }}';
+        var newUrl = url.replace("ID", id);
+
+        if (confirm("Are you sure. you want to delete")) {
+            $.ajax({
+                url: newUrl,
+                type: 'delete',
+                data: {},
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (response) {
+                }
+            });
+        }
+    }
+
+    //search
 </script>
 @endsection

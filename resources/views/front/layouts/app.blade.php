@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Pannel </title>
+    <title>mess Management </title>
     <link rel="icon" href="{{ asset('admin-assets/img/2.png') }}" type="image/icon type">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -30,7 +30,7 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-            </ul>           
+            </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -43,18 +43,14 @@
                             height="40" alt="">
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-3">
-                        <h4 class="h4 mb-0"><strong>{{ Auth::guard('admin')->user()->name }}</strong></h4>
-                        <div class="mb-3">{{ Auth::guard('admin')->user()->email }}</div>
+                        <h4 class="h4 mb-0"><strong>{{ ucfirst(Auth::guard('member')->user()->name) }}</strong></h4>
+                        <div class="mb-3">{{ Auth::guard('member')->user()->email }}</div>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-user-cog mr-2"></i> Settings
-                        </a>
+                        
                         <div class="dropdown-divider"></div>
-                        <a href="" class="dropdown-item">
-                            <i class="fas fa-lock mr-2"></i> Change Password
-                        </a>
+                        
                         <div class="dropdown-divider"></div>
-                        <a href="{{ route('admin.logout') }}" class="dropdown-item text-danger">
+                        <a href="{{ route('account.logout') }}" class="dropdown-item text-danger">
                             <i class="fas fa-sign-out-alt mr-2"></i> Logout
                         </a>
                     </div>
@@ -63,13 +59,14 @@
         </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
-        @include('admin.layouts.sidebar')
-        <!-- Content Wrapper. Contains page content -->
+        @include('front.layouts.sidebar')
         <div class="content-wrapper">
             @yield('content')
         </div>
-        <!-- /.content-wrapper -->
+
+        <!-- /.content -->
         <footer class="main-footer">
+
             <strong id="foter">Copyright &copy; 2024-2034 Trinohub All rights reserved.
         </footer>
     </div>
@@ -95,7 +92,7 @@
             $(".summernote").summernote({
                 height: 200
             });
-        });
+       
     </script>
     @yield('customJs')
 </body>
